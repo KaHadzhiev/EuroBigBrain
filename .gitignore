@@ -1,0 +1,75 @@
+# ============================================================
+# EuroBigBrain .gitignore
+# ============================================================
+
+# ---- MT5 / tester run artefacts -----------------------------
+# Heavy HTML reports, logs, stdout/stderr, launcher shell scripts, and
+# MT5 .ini run configs are all regenerable — keep them out of git.
+runs/**/*.htm
+runs/**/*.html
+runs/**/*.log
+runs/**/*.out
+runs/**/*.err
+runs/**/*.command
+runs/**/*.ini
+
+# Launcher queues / claim files (transient state)
+runs/**/queue/
+runs/**/queue/**
+
+# Only ignore launcher-state manifest jsons inside runs/**/results/
+# (analysis / _result.json reports are explicitly re-included below).
+runs/**/results/*.json
+!runs/**/results/*_result.json
+!runs/**/results/*_manifest.json
+
+# ---- Python ------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# ---- Virtual envs ------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ---- OS cruft ----------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Editors / IDE -----------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Data (big files, fetched separately) ------------------
+data/**/*.parquet
+data/**/*.duckdb
+data/**/*.csv
+data/**/*.feather
+!data/.gitkeep
+
+# ---- MT5 compile byproducts --------------------------------
+mql5/**/*.ex5
+mql5/EBB/tmp/
+
+# ---- Secrets (defensive) -----------------------------------
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+secrets.json
+credentials.json

@@ -1,0 +1,15 @@
+{
+  "id": "test_smoke",
+  "params": {
+    "EntryMode": 4,
+    "RiskPercent": 0.6,
+    "SL_ATR_Mult": 0.5,
+    "TP_ATR_Mult": 2.0,
+    "VolThreshold": 0.5,
+    "SessionStart": 7,
+    "SessionEnd": 16,
+    "FadeLongRSI": 40,
+    "MaxHoldBars": 12,
+    "MagicNumber": 20260422100
+  }
+}
