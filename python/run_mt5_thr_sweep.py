@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
-"""Sweep ProbThreshold via MT5 every-tick. Fire 4 thresholds sequentially.
-Each test ~15 sec. Total ~1-2 min. Parse all reports for PF + trades + DD.
+"""Sweep ProbThreshold via MT5 every-tick. Fire 10 thresholds sequentially.
+Each test ~15 sec. Total ~2-3 min. Parse all reports for PF + trades + DD.
 """
-import os, subprocess, time, re
+import os, subprocess, time, re, argparse
 from pathlib import Path
 from datetime import datetime
 
+ap = argparse.ArgumentParser()
+ap.add_argument("--report-name-prefix", default="EBB_TripleBarrier_h10",
+                help="Prefix for MT5 report filenames so multiple runs don't collide")
+args = ap.parse_args()
+
 INSTANCE = Path(r"C:\MT5-Instances\Instance2")
 TERMINAL = INSTANCE / "terminal64.exe"
-THRESHOLDS = [0.30, 0.32, 0.35, 0.40]
+THRESHOLDS = [0.30, 0.32, 0.34, 0.36, 0.38, 0.40, 0.42, 0.44, 0.46, 0.50]
 results = []
 
 for thr in THRESHOLDS:
     TS = int(time.time() * 1000)
-    REPORT = f"EBB_TB_h10_thr{int(thr*100):02d}_{TS}"
+    REPORT = f"{args.report_name_prefix}_thr{int(thr*100):02d}_{TS}"
     INI = INSTANCE / f"{REPORT}.ini"
     lines = [
         "[Tester]",
         "Expert=EuroBigBrain\\EBB_TripleBarrier.ex5",
         "Symbol=EURUSD","Period=M5","Optimization=0","Model=1",
-        "FromDate=2025.01.01","ToDate=2026.04.13",
+        "FromDate=2024.01.01","ToDate=2026.04.13",
         "ForwardMode=0","Deposit=10000","Currency=USD","Leverage=500",
         "ExecutionMode=0","Visual=0","ShutdownTerminal=1",
         f"Report={REPORT}.htm","ReplaceReport=1","",

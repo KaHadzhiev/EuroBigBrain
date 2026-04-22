@@ -14,7 +14,7 @@
 #property version   "1.00"
 #property strict
 
-#resource "eur_tb_h10.onnx" as uchar OnnxModelData[]
+#resource "eur_tb_h10_22feat.onnx" as uchar OnnxModelData[]
 
 #include <Trade/Trade.mqh>
 
@@ -32,12 +32,12 @@ input int      DebugEveryNTicks = 100;
 input bool     RequireCrossSymbols = true;   // FAIL OnInit if any cross symbol missing
 
 //--- ONNX -----------------------------------------------------------
-#define NUM_FEATURES 23
+#define NUM_FEATURES 22
 long  hModel = INVALID_HANDLE;
 float g_features[NUM_FEATURES];
 
 //--- Bar buffers ----------------------------------------------------
-#define MAX_BARS 600
+#define MAX_BARS 800
 double buf_close[MAX_BARS];   // index 0 = oldest, MAX_BARS-1 = newest closed bar
 double buf_high[MAX_BARS];
 double buf_low[MAX_BARS];
@@ -88,7 +88,7 @@ int OnInit()
    }
 
    long inputShape[]  = {1, NUM_FEATURES};
-   long outputShape[] = {1, 2};
+   long outputShape[] = {1, 2};  // ONNX re-exported with zipmap=False → plain float tensor [batch, 2 classes]
    if(!OnnxSetInputShape(hModel, 0, inputShape))
    { PrintFormat("EBB_TB FATAL: OnnxSetInputShape err=%d", GetLastError()); return INIT_FAILED; }
    if(!OnnxSetOutputShape(hModel, 1, outputShape))
@@ -205,6 +205,22 @@ void OnTick()
    //--- Run ONNX
    float prob = RunModel();
    DebugLogIfDue(prob);
+
+   //--- DIAGNOSTIC: print features + prob + XAU raw + H1 slope raw for first 30 new bars
+   static int diag_cnt = 0;
+   if(diag_cnt < 30) {
+      MqlDateTime mdt0;
+      TimeToStruct(buf_time[MAX_BARS-1], mdt0);
+      int idx0 = MAX_BARS - 1;
+      string s = StringFormat("EBB_DIAG bar=%d t=%04d.%02d.%02d_%02d:%02d prob=%.6f xau_now=%.3f xau_5back=%.3f eurgbp_now=%.5f dxy_now=%.6f f=",
+          diag_cnt, mdt0.year, mdt0.mon, mdt0.day, mdt0.hour, mdt0.min, prob,
+          buf_xau_close[idx0], buf_xau_close[idx0-5],
+          buf_eurgbp_close[idx0], g_features[19]);
+      for(int i = 0; i < NUM_FEATURES; i++) s += StringFormat("%.6f,", g_features[i]);
+      Print(s);
+      diag_cnt++;
+   }
+
    if(prob < 0.0f) return;
 
    if(prob < (float)ProbThreshold) return;
@@ -219,6 +235,12 @@ void OnTick()
    double ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
    double bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
    if(ask <= 0 || bid <= 0) return;
+
+   // Broker stops-level check (FIX v2 21:13: skip low-ATR bars entirely rather than stretch stops
+   // unevenly, which destroys the TP/SL ratio and the edge along with it)
+   int    stops_lvl = (int)SymbolInfoInteger(_Symbol, SYMBOL_TRADE_STOPS_LEVEL);
+   double min_stop = (stops_lvl + 2) * _Point;  // +2 points safety margin
+   if(sl_dist < min_stop || tp_dist < min_stop) return;  // don't trade if ATR too low for proper TB ratio
 
    int digits = (int)SymbolInfoInteger(_Symbol, SYMBOL_DIGITS);
    double sl = NormalizeDouble(ask - sl_dist, digits);
@@ -397,28 +419,19 @@ double SafeLog(double x)
 //+------------------------------------------------------------------+
 double ComputeATR_AtBar(int period, int k_back)
 {
+   // FIX (auditor #1): Python uses simple rolling mean of TR, not Wilder smoothing.
+   // SMA over the last `period` TR values ending at target index.
    int target = MAX_BARS - 1 - k_back;
    if(target - period < 1) return 0.0;
-   // Initial seed: simple average of TR over `period` bars ending at (target - extra)
-   // Walk Wilder's ATR forward through the buffer up to target.
-   int seed_end = period;  // first 'period' bars in buffer used to seed
-   double atr = 0.0;
-   for(int i = 1; i <= period; i++)
+   double sum = 0.0;
+   for(int i = target - period + 1; i <= target; i++)
    {
       double tr = MathMax(buf_high[i] - buf_low[i],
                   MathMax(MathAbs(buf_high[i] - buf_close[i-1]),
                           MathAbs(buf_low[i]  - buf_close[i-1])));
-      atr += tr;
+      sum += tr;
    }
-   atr /= period;
-   for(int i = period + 1; i <= target; i++)
-   {
-      double tr = MathMax(buf_high[i] - buf_low[i],
-                  MathMax(MathAbs(buf_high[i] - buf_close[i-1]),
-                          MathAbs(buf_low[i]  - buf_close[i-1])));
-      atr = (atr * (period - 1.0) + tr) / period;
-   }
-   return atr;
+   return sum / period;
 }
 
 //+------------------------------------------------------------------+
@@ -431,12 +444,21 @@ double ComputeATR_AtBar(int period, int k_back)
 //+------------------------------------------------------------------+
 double ComputeEMA_AtIdx(const double &arr[], int span, int idx)
 {
-   if(idx <= 0) return arr[0];
+   // FIX (auditor #2): pandas default is adjust=True (weighted-sum formula).
+   // adjust=True: EMA[t] = sum(w_i * x_i) / sum(w_i), w_i = (1-alpha)^(t-i)
+   if(idx < 0) return 0.0;
    double mult = 2.0 / (span + 1.0);
-   double ema = arr[0];
-   for(int i = 1; i <= idx; i++)
-      ema = arr[i] * mult + ema * (1.0 - mult);
-   return ema;
+   double one_minus = 1.0 - mult;
+   double num = 0.0, den = 0.0;
+   double w = 1.0;
+   for(int i = idx; i >= 0; i--)
+   {
+      num += w * arr[i];
+      den += w;
+      w *= one_minus;
+      if(w < 1e-15) break;
+   }
+   return num / den;
 }
 
 //+------------------------------------------------------------------+
@@ -596,29 +618,41 @@ bool ComputeFeatures()
    double rng_now = buf_high[idx] - buf_low[idx];
    g_features[15] = (float)SafeDiv(rng_now, rngMed);
 
-   //--- h1_ema50_slope: sign of (h1_ema50[t] - h1_ema50[t-3]) where h1 = M5 closes resampled to 1H
-   // We approximate by sampling close every 12 bars (12 M5 = 1H).
-   // Need at least 12*53 bars of history for safe seeding.
+   //--- h1_ema50_slope: FIX (auditor #3) — Python uses .resample('1H').last() which
+   // CLOCK-ALIGNS to hour boundaries (00:00, 01:00, ...) and ffills the same slope
+   // value to all M5 bars within the hour. We must do the same — find the most
+   // recent M5 bar with minute==0 and snap our hourly grid to it.
+   int h1_anchor = -1;
+   for(int i = idx; i >= 0; i--)
+   {
+      MqlDateTime t;
+      TimeToStruct(buf_time[i], t);
+      if(t.min == 0) { h1_anchor = i; break; }
+   }
    int need_h1 = 12 * 60;   // ~60 hourly samples for stable EMA50
-   if(idx >= need_h1)
+   bool h1_ok = false;
+   if(h1_anchor >= 0 && h1_anchor >= need_h1 - 12)
    {
       int n_h1 = need_h1 / 12;
       double h1_arr[];
       ArrayResize(h1_arr, n_h1);
-      for(int i = 0; i < n_h1; i++)
+      bool valid = true;
+      for(int i = 0; i < n_h1 && valid; i++)
       {
-         int bar_idx = idx - (n_h1 - 1 - i) * 12;
+         int bar_idx = h1_anchor - (n_h1 - 1 - i) * 12;
+         if(bar_idx < 0) { valid = false; break; }
          h1_arr[i] = buf_close[bar_idx];
       }
-      double h1_ema_now  = ComputeEMA_AtIdx(h1_arr, 50, n_h1 - 1);
-      double h1_ema_prev = ComputeEMA_AtIdx(h1_arr, 50, n_h1 - 4);  // 3 hours back
-      double slope = h1_ema_now - h1_ema_prev;
-      g_features[16] = (slope > 0) ? 1.0f : (slope < 0 ? -1.0f : 0.0f);
+      if(valid)
+      {
+         double h1_ema_now  = ComputeEMA_AtIdx(h1_arr, 50, n_h1 - 1);
+         double h1_ema_prev = ComputeEMA_AtIdx(h1_arr, 50, n_h1 - 4);
+         double slope = h1_ema_now - h1_ema_prev;
+         g_features[16] = (slope > 0) ? 1.0f : (slope < 0 ? -1.0f : 0.0f);
+         h1_ok = true;
+      }
    }
-   else
-   {
-      g_features[16] = 0.0f;
-   }
+   if(!h1_ok) g_features[16] = 0.0f;
 
    //--- tickvol_z: (vol - rolling20 mean) / rolling20 std
    double volMean = RollingMean(buf_volume, idx, 20);
@@ -633,13 +667,9 @@ bool ComputeFeatures()
    else
       g_features[18] = 0.0f;
 
-   //--- xau_ret_5
-   double xau_now  = buf_xau_close[idx];
-   double xau_prev = buf_xau_close[idx - 5];
-   if(xau_now > 0 && xau_prev > 0)
-      g_features[19] = (float)(SafeLog(xau_now) - SafeLog(xau_prev));
-   else
-      g_features[19] = 0.0f;
+   //--- xau_ret_5 REMOVED: XAU buffer frozen in tester; feature was causing ONNX prediction collapse.
+   //    22-feat model retrained without xau_ret_5 (AUC loss -0.002, null edge 16.46x, gate 5x).
+   //    Downstream feature indices shifted: was [20..22], now [19..21].
 
    //--- DXY proxy = log(USDJPY) + log(USDCHF) - log(GBPUSD)
    double jpy = buf_usdjpy_close[idx];
@@ -648,7 +678,7 @@ bool ComputeFeatures()
    if(jpy > 0 && chf > 0 && gbp > 0)
    {
       double dxy_now = SafeLog(jpy) + SafeLog(chf) - SafeLog(gbp);
-      g_features[20] = (float)dxy_now;
+      g_features[19] = (float)dxy_now;
 
       // dxy_ret_5 = dxy[t] - dxy[t-5]
       double jpy5 = buf_usdjpy_close[idx-5];
@@ -657,7 +687,7 @@ bool ComputeFeatures()
       double dxy_prev = (jpy5 > 0 && chf5 > 0 && gbp5 > 0)
                         ? (SafeLog(jpy5) + SafeLog(chf5) - SafeLog(gbp5))
                         : dxy_now;
-      g_features[21] = (float)(dxy_now - dxy_prev);
+      g_features[20] = (float)(dxy_now - dxy_prev);
 
       // dxy_z50 = (dxy_now - rolling50_mean) / rolling50_std
       double dxySeries[];
@@ -674,13 +704,13 @@ bool ComputeFeatures()
       }
       double dxyMean = RollingMean(dxySeries, 49, 50);
       double dxyStd  = RollingStd(dxySeries, 49, 50);
-      g_features[22] = (float)SafeDiv(dxy_now - dxyMean, dxyStd);
+      g_features[21] = (float)SafeDiv(dxy_now - dxyMean, dxyStd);
    }
    else
    {
+      g_features[19] = 0.0f;
       g_features[20] = 0.0f;
       g_features[21] = 0.0f;
-      g_features[22] = 0.0f;
    }
 
    return true;
@@ -703,6 +733,6 @@ float RunModel()
       PrintFormat("EBB_TB OnnxRun FAILED err=%d", GetLastError());
       return -1.0f;
    }
-   return probas[1];   // P(class=1, i.e. up move)
+   return probas[1];   // P(class=1, i.e. up move). Inversion tested 21:25 — PF collapsed to 0.90, confirming this index is correct.
 }
 //+------------------------------------------------------------------+

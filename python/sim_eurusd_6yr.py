@@ -41,7 +41,7 @@ TP_MULT = 2.0
 EUR_PIP = 0.0001
 # Vantage retail spread > Dukascopy ECN spread. Vantage Standard typical ~1.0 pip on EURUSD
 # during London/NY (Dukascopy ECN ~0.2-0.5 pip). Markup over ECN ~0.5-0.8 pip.
-VANTAGE_SPREAD_PIPS = 1.0
+VANTAGE_SPREAD_PIPS = 1.3  # corrected from 1.0 after pulling actual EUR Vantage spread (median 13 pts = 1.3 pip)
 # Slippage on market entry+exit (pips)
 SLIPPAGE_PIPS = 0.2
 

@@ -20,6 +20,7 @@ import pandas as pd
 REPO = Path(__file__).resolve().parent.parent
 M5_PARQUET = REPO / "data" / "eurusd_m5_2020_2026.parquet"
 GBB_DATA_DIR = Path.home() / "GoldBigBrain" / "data"
+XAU_M5_PARQUET = REPO / "data" / "XAUUSD_M5_6yr.parquet"
 OUT_PATH = REPO / "data" / "eurusd_features_6yr.parquet"
 
 # EUR sanity bounds (NOT gold's 200-20000)
@@ -154,7 +155,7 @@ def main():
     bar_range = eur["high"] - eur["low"]
     f["range_exp"] = bar_range / bar_range.rolling(20).median()
 
-    h1 = eur["close"].resample("1H").last()
+    h1 = eur["close"].resample("1h").last()
     h1_ema = h1.ewm(span=50).mean()
     h1_slope = (h1_ema - h1_ema.shift(3)).apply(np.sign)
     f["h1_ema50_slope"] = h1_slope.reindex(eur.index, method="ffill")
@@ -176,7 +177,20 @@ def main():
         print("  GBPUSD missing -> eurgbp_ret_5 = 0")
         f["eurgbp_ret_5"] = 0.0
 
-    xau = load_gbb_m5("XAUUSD")
+    # XAU: prefer pre-resampled 6yr parquet, fall back to GBB CSV, else neutral 0
+    xau = None
+    if XAU_M5_PARQUET.exists():
+        try:
+            xdf = pd.read_parquet(XAU_M5_PARQUET)
+            xdf["time"] = pd.to_datetime(xdf["time"])
+            xdf = xdf.set_index("time").sort_index()
+            xau = xdf[["close"]].astype(float)
+            print(f"  XAUUSD loaded from parquet ({len(xau):,} rows)")
+        except Exception as e:
+            print(f"  XAUUSD parquet load failed ({e}); trying GBB CSV")
+            xau = None
+    if xau is None:
+        xau = load_gbb_m5("XAUUSD")
     if xau is not None:
         xau_c = xau["close"].reindex(eur.index, method="ffill")
         f["xau_ret_5"] = np.log(xau_c / xau_c.shift(5))

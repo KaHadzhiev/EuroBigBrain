@@ -40,8 +40,8 @@ OUT_RUN = REPO / "runs" / "train_eurusd_lightgbm_6yr.json"
 
 H_BARS, SL_MULT, TP_MULT = 10, 0.7, 2.0
 TRAIN_START = "2020-01-01"
-TRAIN_END   = "2024-01-01"
-TEST_END    = "2026-04-13"
+TRAIN_END   = "2024-01-01"  # 4yr train window for full 6yr baseline
+TEST_END    = "2026-04-13"  # 2yr OOS test window
 
 PARAMS = {
     "objective": "binary", "metric": "auc",
