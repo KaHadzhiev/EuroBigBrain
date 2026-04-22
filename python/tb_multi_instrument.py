@@ -32,7 +32,11 @@ def build_features(df, sym):
     df['ret20'] = c.pct_change(20)
     df['atr14'] = (df['high']-df['low']).rolling(14).mean()
     df['atr14_norm'] = df['atr14'] / c
-    df['vol_z'] = (df['volume'] - df['volume'].rolling(50).mean()) / df['volume'].rolling(50).std().replace(0, np.nan)
+    vol_col = 'volume' if 'volume' in df.columns else 'tick_volume' if 'tick_volume' in df.columns else None
+    if vol_col is None:
+        df['vol_z'] = 0.0
+    else:
+        df['vol_z'] = (df[vol_col] - df[vol_col].rolling(50).mean()) / df[vol_col].rolling(50).std().replace(0, np.nan)
     df['rsi14'] = 100 - 100/(1 + (c.diff().clip(lower=0).rolling(14).mean() / -c.diff().clip(upper=0).rolling(14).mean().replace(0, np.nan)))
     df['ema20_z'] = (c - c.ewm(span=20).mean()) / c.ewm(span=20).std()
     df['ema50_z'] = (c - c.ewm(span=50).mean()) / c.ewm(span=50).std()
