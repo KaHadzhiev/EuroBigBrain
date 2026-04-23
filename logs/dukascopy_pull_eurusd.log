@@ -1,0 +1,316 @@
+2026-04-22 12:22:39,409 INFO ============================================================
+2026-04-22 12:22:39,409 INFO Dukascopy EURUSD tick pull: 2020-01-01 to 2026-04-13
+2026-04-22 12:22:39,409 INFO Output: C:\Users\kahad\IdeaProjects\EuroBigBrain\data\dukascopy, Workers: 6
+2026-04-22 12:22:39,410 INFO ============================================================
+2026-04-22 12:22:39,410 INFO === SMOKE TEST: EURUSD 2025-11-03 (Monday) ===
+2026-04-22 12:23:56,188 INFO   Smoke rows: 49,516
+2026-04-22 12:23:56,191 INFO   Bid range: 1.15050 – 1.15413
+2026-04-22 12:23:56,191 INFO   Ask range: 1.15054 – 1.15416
+2026-04-22 12:23:56,197 INFO   Sample:
+                            time     bid     ask  last  volume  flags
+2025-11-03 00:00:00.071000+00:00 1.15273 1.15276   0.0       0    134
+2025-11-03 00:00:00.302000+00:00 1.15273 1.15278   0.0       0    134
+2025-11-03 00:00:00.406000+00:00 1.15272 1.15277   0.0       0    134
+2026-04-22 12:23:56,197 INFO === SMOKE TEST PASSED ===
+2026-04-22 12:24:14,952 INFO ============================================================
+2026-04-22 12:24:14,952 INFO Dukascopy EURUSD tick pull: 2020-01-01 to 2026-04-13
+2026-04-22 12:24:14,952 INFO Output: C:\Users\kahad\IdeaProjects\EuroBigBrain\data\dukascopy, Workers: 6
+2026-04-22 12:24:14,952 INFO ============================================================
+2026-04-22 12:24:14,952 INFO Total months: 76
+2026-04-22 12:24:14,953 INFO   Downloading 2020-01 (31 days) ...
+2026-04-22 12:26:04,238 INFO   Saved eurusd_ticks_2020-01.parquet: 1,618,400 rows, 11.4 MB
+2026-04-22 12:26:04,257 INFO [1/76] 2020-01: 1,618,400 rows (109s) ETA: 2.3h
+2026-04-22 12:26:04,258 INFO   Downloading 2020-02 (29 days) ...
+2026-04-22 12:27:40,060 INFO   Saved eurusd_ticks_2020-02.parquet: 1,543,984 rows, 11.1 MB
+2026-04-22 12:27:40,071 INFO [2/76] 2020-02: 1,543,984 rows (96s) ETA: 2.1h
+2026-04-22 12:27:40,072 INFO   Downloading 2020-03 (31 days) ...
+2026-04-22 12:30:44,505 INFO   Saved eurusd_ticks_2020-03.parquet: 5,594,649 rows, 41.5 MB
+2026-04-22 12:30:44,558 INFO [3/76] 2020-03: 5,594,649 rows (184s) ETA: 2.6h
+2026-04-22 12:30:44,559 INFO   Downloading 2020-04 (30 days) ...
+2026-04-22 12:32:31,743 INFO   Saved eurusd_ticks_2020-04.parquet: 2,669,494 rows, 19.7 MB
+2026-04-22 12:32:31,785 INFO [4/76] 2020-04: 2,669,494 rows (107s) ETA: 2.5h
+2026-04-22 12:32:31,785 INFO   Downloading 2020-05 (31 days) ...
+2026-04-22 12:34:12,979 INFO   Saved eurusd_ticks_2020-05.parquet: 2,015,182 rows, 14.7 MB
+2026-04-22 12:34:12,994 INFO [5/76] 2020-05: 2,015,182 rows (101s) ETA: 2.4h
+2026-04-22 12:34:12,995 INFO   Downloading 2020-06 (30 days) ...
+2026-04-22 12:36:21,304 INFO   Saved eurusd_ticks_2020-06.parquet: 2,918,937 rows, 21.4 MB
+2026-04-22 12:36:21,332 INFO [6/76] 2020-06: 2,918,937 rows (128s) ETA: 2.4h
+2026-04-22 12:36:21,333 INFO   Downloading 2020-07 (31 days) ...
+2026-04-22 12:38:13,240 INFO   Saved eurusd_ticks_2020-07.parquet: 2,729,446 rows, 20.2 MB
+2026-04-22 12:38:13,268 INFO [7/76] 2020-07: 2,729,446 rows (112s) ETA: 2.3h
+2026-04-22 12:38:13,268 INFO   Downloading 2020-08 (31 days) ...
+2026-04-22 12:39:27,761 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2020/07/11/15h_ticks.bi5
+2026-04-22 12:41:04,925 INFO   Saved eurusd_ticks_2020-08.parquet: 2,677,682 rows, 19.9 MB
+2026-04-22 12:41:04,951 INFO [8/76] 2020-08: 2,677,682 rows (172s) ETA: 2.4h
+2026-04-22 12:41:04,951 INFO   Downloading 2020-09 (30 days) ...
+2026-04-22 12:42:53,173 INFO   Saved eurusd_ticks_2020-09.parquet: 3,297,023 rows, 24.1 MB
+2026-04-22 12:42:53,204 INFO [9/76] 2020-09: 3,297,023 rows (108s) ETA: 2.3h
+2026-04-22 12:42:53,204 INFO   Downloading 2020-10 (31 days) ...
+2026-04-22 12:44:40,817 INFO   Saved eurusd_ticks_2020-10.parquet: 2,870,528 rows, 20.5 MB
+2026-04-22 12:44:40,836 INFO [10/76] 2020-10: 2,870,528 rows (108s) ETA: 2.2h
+2026-04-22 12:44:40,838 INFO   Downloading 2020-11 (30 days) ...
+2026-04-22 12:46:46,980 INFO   Saved eurusd_ticks_2020-11.parquet: 2,428,896 rows, 17.6 MB
+2026-04-22 12:46:47,007 INFO [11/76] 2020-11: 2,428,896 rows (126s) ETA: 2.2h
+2026-04-22 12:46:47,007 INFO   Downloading 2020-12 (31 days) ...
+2026-04-22 12:48:38,388 INFO   Saved eurusd_ticks_2020-12.parquet: 2,049,162 rows, 15.2 MB
+2026-04-22 12:48:38,402 INFO [12/76] 2020-12: 2,049,162 rows (111s) ETA: 2.2h
+2026-04-22 12:48:38,403 INFO   Downloading 2021-01 (31 days) ...
+2026-04-22 12:51:43,915 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/00/28/03h_ticks.bi5: The read operation timed out
+2026-04-22 12:53:38,960 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/00/29/06h_ticks.bi5: The read operation timed out
+2026-04-22 12:53:44,952 INFO   Saved eurusd_ticks_2021-01.parquet: 1,903,559 rows, 14.3 MB
+2026-04-22 12:53:44,966 INFO [13/76] 2021-01: 1,903,559 rows (307s) ETA: 2.4h
+2026-04-22 12:53:44,967 INFO   Downloading 2021-02 (28 days) ...
+2026-04-22 12:55:21,195 INFO   Saved eurusd_ticks_2021-02.parquet: 1,576,579 rows, 11.8 MB
+2026-04-22 12:55:21,204 INFO [14/76] 2021-02: 1,576,579 rows (96s) ETA: 2.3h
+2026-04-22 12:55:21,205 INFO   Downloading 2021-03 (31 days) ...
+2026-04-22 12:57:12,415 INFO   Saved eurusd_ticks_2021-03.parquet: 1,863,258 rows, 14.0 MB
+2026-04-22 12:57:12,430 INFO [15/76] 2021-03: 1,863,258 rows (111s) ETA: 2.2h
+2026-04-22 12:57:12,431 INFO   Downloading 2021-04 (30 days) ...
+2026-04-22 12:58:57,205 INFO   Saved eurusd_ticks_2021-04.parquet: 1,181,664 rows, 9.0 MB
+2026-04-22 12:58:57,216 INFO [16/76] 2021-04: 1,181,664 rows (105s) ETA: 2.2h
+2026-04-22 12:58:57,216 INFO   Downloading 2021-05 (31 days) ...
+2026-04-22 13:00:45,397 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/04/24/22h_ticks.bi5: The read operation timed out
+2026-04-22 13:00:55,651 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/04/24/23h_ticks.bi5
+2026-04-22 13:01:15,144 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/04/24/20h_ticks.bi5: The read operation timed out
+2026-04-22 13:01:15,253 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/04/24/21h_ticks.bi5: The read operation timed out
+2026-04-22 13:01:39,522 INFO   Saved eurusd_ticks_2021-05.parquet: 1,309,425 rows, 9.9 MB
+2026-04-22 13:01:39,533 INFO [17/76] 2021-05: 1,309,425 rows (162s) ETA: 2.2h
+2026-04-22 13:01:39,534 INFO   Downloading 2021-06 (30 days) ...
+2026-04-22 13:03:28,096 INFO   Saved eurusd_ticks_2021-06.parquet: 1,289,861 rows, 9.7 MB
+2026-04-22 13:03:28,112 INFO [18/76] 2021-06: 1,289,861 rows (109s) ETA: 2.1h
+2026-04-22 13:03:28,112 INFO   Downloading 2021-07 (31 days) ...
+2026-04-22 13:05:13,403 INFO   Saved eurusd_ticks_2021-07.parquet: 1,333,468 rows, 10.1 MB
+2026-04-22 13:05:13,410 INFO [19/76] 2021-07: 1,333,468 rows (105s) ETA: 2.0h
+2026-04-22 13:05:13,410 INFO   Downloading 2021-08 (31 days) ...
+2026-04-22 13:06:58,229 INFO   Saved eurusd_ticks_2021-08.parquet: 941,856 rows, 7.1 MB
+2026-04-22 13:06:58,243 INFO [20/76] 2021-08: 941,856 rows (105s) ETA: 2.0h
+2026-04-22 13:06:58,243 INFO   Downloading 2021-09 (30 days) ...
+2026-04-22 13:08:45,722 INFO   Saved eurusd_ticks_2021-09.parquet: 1,219,032 rows, 9.3 MB
+2026-04-22 13:08:45,739 INFO [21/76] 2021-09: 1,219,032 rows (107s) ETA: 1.9h
+2026-04-22 13:08:45,739 INFO   Downloading 2021-10 (31 days) ...
+2026-04-22 13:10:30,845 INFO   Saved eurusd_ticks_2021-10.parquet: 1,143,185 rows, 8.7 MB
+2026-04-22 13:10:30,860 INFO [22/76] 2021-10: 1,143,185 rows (105s) ETA: 1.9h
+2026-04-22 13:10:30,860 INFO   Downloading 2021-11 (30 days) ...
+2026-04-22 13:11:47,015 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/10/01h_ticks.bi5: The read operation timed out
+2026-04-22 13:11:47,032 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/10/00h_ticks.bi5: The read operation timed out
+2026-04-22 13:11:47,033 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/10/02h_ticks.bi5: The read operation timed out
+2026-04-22 13:12:19,948 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/10/06h_ticks.bi5: The read operation timed out
+2026-04-22 13:13:30,699 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/23/05h_ticks.bi5
+2026-04-22 13:13:41,901 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/23/21h_ticks.bi5
+2026-04-22 13:13:52,703 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/24/12h_ticks.bi5
+2026-04-22 13:14:16,897 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/25/21h_ticks.bi5
+2026-04-22 13:14:22,180 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/26/04h_ticks.bi5
+2026-04-22 13:14:22,181 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/26/02h_ticks.bi5
+2026-04-22 13:14:22,185 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/26/01h_ticks.bi5
+2026-04-22 13:14:28,703 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/26/12h_ticks.bi5
+2026-04-22 13:14:57,361 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/30/05h_ticks.bi5
+2026-04-22 13:15:01,256 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/10/30/10h_ticks.bi5
+2026-04-22 13:15:12,263 INFO   Saved eurusd_ticks_2021-11.parquet: 1,443,334 rows, 10.8 MB
+2026-04-22 13:15:12,291 INFO [23/76] 2021-11: 1,443,334 rows (281s) ETA: 2.0h
+2026-04-22 13:15:12,292 INFO   Downloading 2021-12 (31 days) ...
+2026-04-22 13:15:15,741 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/01/02h_ticks.bi5
+2026-04-22 13:15:15,743 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/01/00h_ticks.bi5
+2026-04-22 13:15:22,899 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/01/14h_ticks.bi5
+2026-04-22 13:15:31,196 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/02/04h_ticks.bi5
+2026-04-22 13:15:31,204 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/02/05h_ticks.bi5
+2026-04-22 13:15:48,992 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/03/05h_ticks.bi5
+2026-04-22 13:15:49,001 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/03/00h_ticks.bi5
+2026-04-22 13:16:05,912 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/06/01h_ticks.bi5
+2026-04-22 13:16:05,943 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/06/03h_ticks.bi5
+2026-04-22 13:16:38,439 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/08/05h_ticks.bi5
+2026-04-22 13:16:58,365 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/09/01h_ticks.bi5
+2026-04-22 13:17:14,438 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/10/05h_ticks.bi5
+2026-04-22 13:17:14,463 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/10/02h_ticks.bi5
+2026-04-22 13:17:14,469 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/10/01h_ticks.bi5
+2026-04-22 13:17:14,470 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/10/00h_ticks.bi5
+2026-04-22 13:17:17,921 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/10/08h_ticks.bi5
+2026-04-22 13:17:30,994 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/13/01h_ticks.bi5
+2026-04-22 13:18:02,176 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/14/01h_ticks.bi5
+2026-04-22 13:18:02,180 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2021/11/14/00h_ticks.bi5
+2026-04-22 13:19:53,195 INFO   Saved eurusd_ticks_2021-12.parquet: 1,361,740 rows, 10.2 MB
+2026-04-22 13:19:53,226 INFO [24/76] 2021-12: 1,361,740 rows (281s) ETA: 2.0h
+2026-04-22 13:19:53,226 INFO   Downloading 2022-01 (31 days) ...
+2026-04-22 13:22:32,405 INFO   Saved eurusd_ticks_2022-01.parquet: 1,385,087 rows, 10.4 MB
+2026-04-22 13:22:32,422 INFO [25/76] 2022-01: 1,385,087 rows (159s) ETA: 2.0h
+2026-04-22 13:22:32,423 INFO   Downloading 2022-02 (28 days) ...
+2026-04-22 13:25:30,000 INFO   Saved eurusd_ticks_2022-02.parquet: 1,702,412 rows, 12.8 MB
+2026-04-22 13:25:30,029 INFO [26/76] 2022-02: 1,702,412 rows (178s) ETA: 2.0h
+2026-04-22 13:25:30,029 INFO   Downloading 2022-03 (31 days) ...
+2026-04-22 13:27:33,612 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2022/02/21/02h_ticks.bi5
+2026-04-22 13:28:06,928 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2022/02/21/06h_ticks.bi5: The read operation timed out
+2026-04-22 13:28:33,527 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2022/02/21/05h_ticks.bi5: The read operation timed out
+2026-04-22 13:28:33,543 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2022/02/21/03h_ticks.bi5: The read operation timed out
+2026-04-22 13:29:56,660 INFO   Saved eurusd_ticks_2022-03.parquet: 2,674,896 rows, 20.2 MB
+2026-04-22 13:29:56,681 INFO [27/76] 2022-03: 2,674,896 rows (267s) ETA: 2.0h
+2026-04-22 13:29:56,682 INFO   Downloading 2022-04 (30 days) ...
+2026-04-22 13:32:43,931 INFO   Saved eurusd_ticks_2022-04.parquet: 2,062,103 rows, 15.4 MB
+2026-04-22 13:32:43,954 INFO [28/76] 2022-04: 2,062,103 rows (167s) ETA: 2.0h
+2026-04-22 13:32:43,954 INFO   Downloading 2022-05 (31 days) ...
+2026-04-22 13:33:39,207 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2022/04/09/12h_ticks.bi5
+2026-04-22 13:34:42,476 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2022/04/09/13h_ticks.bi5: The read operation timed out
+2026-04-22 13:36:53,881 INFO   Saved eurusd_ticks_2022-05.parquet: 2,583,857 rows, 19.3 MB
+2026-04-22 13:36:53,904 INFO [29/76] 2022-05: 2,583,857 rows (250s) ETA: 2.0h
+2026-04-22 13:36:53,904 INFO   Downloading 2022-06 (30 days) ...
+2026-04-22 13:39:49,016 INFO   Saved eurusd_ticks_2022-06.parquet: 2,507,972 rows, 18.7 MB
+2026-04-22 13:39:49,066 INFO [30/76] 2022-06: 2,507,972 rows (175s) ETA: 1.9h
+2026-04-22 13:39:49,067 INFO   Downloading 2022-07 (31 days) ...
+2026-04-22 13:42:37,272 INFO   Saved eurusd_ticks_2022-07.parquet: 2,951,308 rows, 22.1 MB
+2026-04-22 13:42:37,318 INFO [31/76] 2022-07: 2,951,308 rows (168s) ETA: 1.9h
+2026-04-22 13:42:37,319 INFO   Downloading 2022-08 (31 days) ...
+2026-04-22 13:45:56,334 INFO   Saved eurusd_ticks_2022-08.parquet: 3,516,675 rows, 25.8 MB
+2026-04-22 13:45:56,384 INFO [32/76] 2022-08: 3,516,675 rows (199s) ETA: 1.9h
+2026-04-22 13:45:56,385 INFO   Downloading 2022-09 (30 days) ...
+2026-04-22 13:49:58,159 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2022/08/28/20h_ticks.bi5
+2026-04-22 13:51:07,831 INFO   Saved eurusd_ticks_2022-09.parquet: 4,468,225 rows, 32.7 MB
+2026-04-22 13:51:07,875 INFO [33/76] 2022-09: 4,468,225 rows (311s) ETA: 1.9h
+2026-04-22 13:51:07,876 INFO   Downloading 2022-10 (31 days) ...
+2026-04-22 13:53:55,684 INFO   Saved eurusd_ticks_2022-10.parquet: 4,784,894 rows, 34.8 MB
+2026-04-22 13:53:55,725 INFO [34/76] 2022-10: 4,784,894 rows (168s) ETA: 1.8h
+2026-04-22 13:53:55,725 INFO   Downloading 2022-11 (30 days) ...
+2026-04-22 13:56:51,000 INFO   Saved eurusd_ticks_2022-11.parquet: 4,392,842 rows, 32.2 MB
+2026-04-22 13:56:51,042 INFO [35/76] 2022-11: 4,392,842 rows (175s) ETA: 1.8h
+2026-04-22 13:56:51,042 INFO   Downloading 2022-12 (31 days) ...
+2026-04-22 13:59:21,491 INFO   Saved eurusd_ticks_2022-12.parquet: 3,509,483 rows, 25.4 MB
+2026-04-22 13:59:21,515 INFO [36/76] 2022-12: 3,509,483 rows (150s) ETA: 1.8h
+2026-04-22 13:59:21,516 INFO   Downloading 2023-01 (31 days) ...
+2026-04-22 14:00:48,398 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2023/00/05/15h_ticks.bi5
+2026-04-22 14:00:55,663 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2023/00/05/10h_ticks.bi5: The read operation timed out
+2026-04-22 14:03:08,291 INFO   Saved eurusd_ticks_2023-01.parquet: 2,928,488 rows, 21.6 MB
+2026-04-22 14:03:08,319 INFO [37/76] 2023-01: 2,928,488 rows (227s) ETA: 1.7h
+2026-04-22 14:03:08,319 INFO   Downloading 2023-02 (28 days) ...
+2026-04-22 14:04:46,746 INFO   Saved eurusd_ticks_2023-02.parquet: 2,669,824 rows, 19.6 MB
+2026-04-22 14:04:46,775 INFO [38/76] 2023-02: 2,669,824 rows (98s) ETA: 1.7h
+2026-04-22 14:04:46,775 INFO   Downloading 2023-03 (31 days) ...
+2026-04-22 14:06:40,601 INFO   Saved eurusd_ticks_2023-03.parquet: 3,342,695 rows, 24.4 MB
+2026-04-22 14:06:40,643 INFO [39/76] 2023-03: 3,342,695 rows (114s) ETA: 1.6h
+2026-04-22 14:06:40,644 INFO   Downloading 2023-04 (30 days) ...
+2026-04-22 14:07:38,842 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2023/03/03/09h_ticks.bi5
+2026-04-22 14:09:38,817 INFO   Saved eurusd_ticks_2023-04.parquet: 1,852,159 rows, 13.6 MB
+2026-04-22 14:09:38,829 INFO [40/76] 2023-04: 1,852,159 rows (178s) ETA: 1.6h
+2026-04-22 14:09:38,829 INFO   Downloading 2023-05 (31 days) ...
+2026-04-22 14:11:31,959 INFO   Saved eurusd_ticks_2023-05.parquet: 2,222,345 rows, 16.1 MB
+2026-04-22 14:11:32,031 INFO [41/76] 2023-05: 2,222,345 rows (113s) ETA: 1.5h
+2026-04-22 14:11:32,031 INFO   Downloading 2023-06 (30 days) ...
+2026-04-22 14:14:41,031 INFO   Saved eurusd_ticks_2023-06.parquet: 2,036,812 rows, 14.6 MB
+2026-04-22 14:14:41,051 INFO [42/76] 2023-06: 2,036,812 rows (189s) ETA: 1.5h
+2026-04-22 14:14:41,051 INFO   Downloading 2023-07 (31 days) ...
+2026-04-22 14:16:22,540 INFO   Saved eurusd_ticks_2023-07.parquet: 2,096,788 rows, 15.1 MB
+2026-04-22 14:16:22,570 INFO [43/76] 2023-07: 2,096,788 rows (102s) ETA: 1.4h
+2026-04-22 14:16:22,571 INFO   Downloading 2023-08 (31 days) ...
+2026-04-22 14:19:24,226 INFO   Saved eurusd_ticks_2023-08.parquet: 2,222,956 rows, 16.2 MB
+2026-04-22 14:19:24,255 INFO [44/76] 2023-08: 2,222,956 rows (182s) ETA: 1.4h
+2026-04-22 14:19:24,255 INFO   Downloading 2023-09 (30 days) ...
+2026-04-22 14:21:06,599 INFO   Saved eurusd_ticks_2023-09.parquet: 1,717,687 rows, 12.7 MB
+2026-04-22 14:21:06,622 INFO [45/76] 2023-09: 1,717,687 rows (102s) ETA: 1.3h
+2026-04-22 14:21:06,625 INFO   Downloading 2023-10 (31 days) ...
+2026-04-22 14:22:53,424 INFO   Saved eurusd_ticks_2023-10.parquet: 2,174,074 rows, 16.0 MB
+2026-04-22 14:22:53,445 INFO [46/76] 2023-10: 2,174,074 rows (107s) ETA: 1.3h
+2026-04-22 14:22:53,445 INFO   Downloading 2023-11 (30 days) ...
+2026-04-22 14:24:39,627 INFO   Saved eurusd_ticks_2023-11.parquet: 1,930,433 rows, 14.0 MB
+2026-04-22 14:24:39,645 INFO [47/76] 2023-11: 1,930,433 rows (106s) ETA: 1.2h
+2026-04-22 14:24:39,645 INFO   Downloading 2023-12 (31 days) ...
+2026-04-22 14:26:22,583 INFO   Saved eurusd_ticks_2023-12.parquet: 2,103,551 rows, 15.3 MB
+2026-04-22 14:26:22,618 INFO [48/76] 2023-12: 2,103,551 rows (103s) ETA: 1.2h
+2026-04-22 14:26:22,619 INFO   Downloading 2024-01 (31 days) ...
+2026-04-22 14:29:23,244 INFO   Saved eurusd_ticks_2024-01.parquet: 2,160,119 rows, 15.7 MB
+2026-04-22 14:29:23,270 INFO [49/76] 2024-01: 2,160,119 rows (181s) ETA: 1.1h
+2026-04-22 14:29:23,271 INFO   Downloading 2024-02 (29 days) ...
+2026-04-22 14:31:04,674 INFO   Saved eurusd_ticks_2024-02.parquet: 1,697,337 rows, 12.3 MB
+2026-04-22 14:31:04,695 INFO [50/76] 2024-02: 1,697,337 rows (101s) ETA: 1.1h
+2026-04-22 14:31:04,696 INFO   Downloading 2024-03 (31 days) ...
+2026-04-22 14:32:45,333 INFO   Saved eurusd_ticks_2024-03.parquet: 1,459,507 rows, 10.4 MB
+2026-04-22 14:32:45,340 INFO [51/76] 2024-03: 1,459,507 rows (101s) ETA: 1.0h
+2026-04-22 14:32:45,341 INFO   Downloading 2024-04 (30 days) ...
+2026-04-22 14:34:31,245 INFO   Saved eurusd_ticks_2024-04.parquet: 1,548,020 rows, 11.4 MB
+2026-04-22 14:34:31,262 INFO [52/76] 2024-04: 1,548,020 rows (106s) ETA: 1.0h
+2026-04-22 14:34:31,263 INFO   Downloading 2024-05 (31 days) ...
+2026-04-22 14:36:21,057 INFO   Saved eurusd_ticks_2024-05.parquet: 1,237,274 rows, 9.2 MB
+2026-04-22 14:36:21,068 INFO [53/76] 2024-05: 1,237,274 rows (110s) ETA: 1.0h
+2026-04-22 14:36:21,069 INFO   Downloading 2024-06 (30 days) ...
+2026-04-22 14:37:57,571 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2024/05/26/15h_ticks.bi5
+2026-04-22 14:37:57,723 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2024/05/26/16h_ticks.bi5
+2026-04-22 14:38:55,881 INFO   Saved eurusd_ticks_2024-06.parquet: 1,306,250 rows, 9.5 MB
+2026-04-22 14:38:55,892 INFO [54/76] 2024-06: 1,306,250 rows (155s) ETA: 0.9h
+2026-04-22 14:38:55,893 INFO   Downloading 2024-07 (31 days) ...
+2026-04-22 14:40:46,290 INFO   Saved eurusd_ticks_2024-07.parquet: 1,445,492 rows, 10.2 MB
+2026-04-22 14:40:46,313 INFO [55/76] 2024-07: 1,445,492 rows (110s) ETA: 0.9h
+2026-04-22 14:40:46,314 INFO   Downloading 2024-08 (31 days) ...
+2026-04-22 14:42:32,046 INFO   Saved eurusd_ticks_2024-08.parquet: 1,832,992 rows, 13.2 MB
+2026-04-22 14:42:32,061 INFO [56/76] 2024-08: 1,832,992 rows (106s) ETA: 0.8h
+2026-04-22 14:42:32,061 INFO   Downloading 2024-09 (30 days) ...
+2026-04-22 14:44:13,303 INFO   Saved eurusd_ticks_2024-09.parquet: 1,780,657 rows, 12.9 MB
+2026-04-22 14:44:13,327 INFO [57/76] 2024-09: 1,780,657 rows (101s) ETA: 0.8h
+2026-04-22 14:44:13,327 INFO   Downloading 2024-10 (31 days) ...
+2026-04-22 14:46:04,182 INFO   Saved eurusd_ticks_2024-10.parquet: 1,754,397 rows, 12.6 MB
+2026-04-22 14:46:04,202 INFO [58/76] 2024-10: 1,754,397 rows (111s) ETA: 0.7h
+2026-04-22 14:46:04,202 INFO   Downloading 2024-11 (30 days) ...
+2026-04-22 14:48:34,550 INFO   Saved eurusd_ticks_2024-11.parquet: 2,303,341 rows, 16.7 MB
+2026-04-22 14:48:34,570 INFO [59/76] 2024-11: 2,303,341 rows (150s) ETA: 0.7h
+2026-04-22 14:48:34,570 INFO   Downloading 2024-12 (31 days) ...
+2026-04-22 14:50:20,839 INFO   Saved eurusd_ticks_2024-12.parquet: 1,960,318 rows, 14.2 MB
+2026-04-22 14:50:20,861 INFO [60/76] 2024-12: 1,960,318 rows (106s) ETA: 0.6h
+2026-04-22 14:50:20,861 INFO   Downloading 2025-01 (31 days) ...
+2026-04-22 14:52:12,265 INFO   Saved eurusd_ticks_2025-01.parquet: 2,271,377 rows, 16.9 MB
+2026-04-22 14:52:12,293 INFO [61/76] 2025-01: 2,271,377 rows (111s) ETA: 0.6h
+2026-04-22 14:52:12,293 INFO   Downloading 2025-02 (28 days) ...
+2026-04-22 14:54:11,142 INFO   Saved eurusd_ticks_2025-02.parquet: 2,028,120 rows, 15.2 MB
+2026-04-22 14:54:11,177 INFO [62/76] 2025-02: 2,028,120 rows (119s) ETA: 0.6h
+2026-04-22 14:54:11,177 INFO   Downloading 2025-03 (31 days) ...
+2026-04-22 14:55:54,827 INFO   Saved eurusd_ticks_2025-03.parquet: 2,319,611 rows, 17.6 MB
+2026-04-22 14:55:54,849 INFO [63/76] 2025-03: 2,319,611 rows (104s) ETA: 0.5h
+2026-04-22 14:55:54,849 INFO   Downloading 2025-04 (30 days) ...
+2026-04-22 14:57:45,186 INFO   Saved eurusd_ticks_2025-04.parquet: 3,854,461 rows, 29.2 MB
+2026-04-22 14:57:45,217 INFO [64/76] 2025-04: 3,854,461 rows (110s) ETA: 0.5h
+2026-04-22 14:57:45,218 INFO   Downloading 2025-05 (31 days) ...
+2026-04-22 14:59:32,279 INFO   Saved eurusd_ticks_2025-05.parquet: 2,394,435 rows, 18.2 MB
+2026-04-22 14:59:32,294 INFO [65/76] 2025-05: 2,394,435 rows (107s) ETA: 0.4h
+2026-04-22 14:59:32,295 INFO   Downloading 2025-06 (30 days) ...
+2026-04-22 15:01:13,858 INFO   Saved eurusd_ticks_2025-06.parquet: 2,003,662 rows, 15.1 MB
+2026-04-22 15:01:13,874 INFO [66/76] 2025-06: 2,003,662 rows (102s) ETA: 0.4h
+2026-04-22 15:01:13,874 INFO   Downloading 2025-07 (31 days) ...
+2026-04-22 15:03:03,205 INFO   Saved eurusd_ticks_2025-07.parquet: 1,542,510 rows, 11.8 MB
+2026-04-22 15:03:03,218 INFO [67/76] 2025-07: 1,542,510 rows (109s) ETA: 0.4h
+2026-04-22 15:03:03,219 INFO   Downloading 2025-08 (31 days) ...
+2026-04-22 15:04:42,460 INFO   Saved eurusd_ticks_2025-08.parquet: 1,328,254 rows, 10.3 MB
+2026-04-22 15:04:42,471 INFO [68/76] 2025-08: 1,328,254 rows (99s) ETA: 0.3h
+2026-04-22 15:04:42,472 INFO   Downloading 2025-09 (30 days) ...
+2026-04-22 15:06:26,972 INFO   Saved eurusd_ticks_2025-09.parquet: 1,483,018 rows, 11.2 MB
+2026-04-22 15:06:26,989 INFO [69/76] 2025-09: 1,483,018 rows (105s) ETA: 0.3h
+2026-04-22 15:06:26,990 INFO   Downloading 2025-10 (31 days) ...
+2026-04-22 15:08:15,887 INFO   Saved eurusd_ticks_2025-10.parquet: 1,464,520 rows, 11.1 MB
+2026-04-22 15:08:15,907 INFO [70/76] 2025-10: 1,464,520 rows (109s) ETA: 0.2h
+2026-04-22 15:08:15,907 INFO   Downloading 2025-11 (30 days) ...
+2026-04-22 15:09:37,218 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2025/10/25/15h_ticks.bi5
+2026-04-22 15:09:37,601 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2025/10/25/17h_ticks.bi5
+2026-04-22 15:09:37,840 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2025/10/25/18h_ticks.bi5
+2026-04-22 15:09:40,525 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2025/10/25/20h_ticks.bi5
+2026-04-22 15:09:41,148 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2025/10/25/22h_ticks.bi5
+2026-04-22 15:10:10,881 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2025/10/25/21h_ticks.bi5: The read operation timed out
+2026-04-22 15:10:52,948 INFO   Saved eurusd_ticks_2025-11.parquet: 1,193,664 rows, 9.1 MB
+2026-04-22 15:10:52,961 INFO [71/76] 2025-11: 1,193,664 rows (157s) ETA: 0.2h
+2026-04-22 15:10:52,961 INFO   Downloading 2025-12 (31 days) ...
+2026-04-22 15:12:43,684 INFO   Saved eurusd_ticks_2025-12.parquet: 1,282,744 rows, 9.6 MB
+2026-04-22 15:12:43,715 INFO [72/76] 2025-12: 1,282,744 rows (111s) ETA: 0.2h
+2026-04-22 15:12:43,717 INFO   Downloading 2026-01 (31 days) ...
+2026-04-22 15:14:28,273 INFO   Saved eurusd_ticks_2026-01.parquet: 1,488,537 rows, 11.3 MB
+2026-04-22 15:14:28,288 INFO [73/76] 2026-01: 1,488,537 rows (105s) ETA: 0.1h
+2026-04-22 15:14:28,288 INFO   Downloading 2026-02 (28 days) ...
+2026-04-22 15:16:24,971 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/06h_ticks.bi5
+2026-04-22 15:16:25,079 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/07h_ticks.bi5
+2026-04-22 15:16:25,495 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/10h_ticks.bi5
+2026-04-22 15:16:55,351 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/09h_ticks.bi5
+2026-04-22 15:16:58,299 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/12h_ticks.bi5
+2026-04-22 15:16:58,392 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/13h_ticks.bi5
+2026-04-22 15:16:58,822 WARNING HTTP 503 after 3 retries: https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/14h_ticks.bi5
+2026-04-22 15:17:31,590 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/16h_ticks.bi5: The read operation timed out
+2026-04-22 15:17:32,132 WARNING Network error for https://datafeed.dukascopy.com/datafeed/EURUSD/2026/01/23/18h_ticks.bi5: The read operation timed out
+2026-04-22 15:18:16,170 INFO   Saved eurusd_ticks_2026-02.parquet: 1,286,742 rows, 9.8 MB
+2026-04-22 15:18:16,178 INFO [74/76] 2026-02: 1,286,742 rows (228s) ETA: 0.1h
+2026-04-22 15:18:16,179 INFO   Downloading 2026-03 (31 days) ...
+2026-04-22 15:20:01,998 INFO   Saved eurusd_ticks_2026-03.parquet: 2,590,199 rows, 19.7 MB
+2026-04-22 15:20:02,018 INFO [75/76] 2026-03: 2,590,199 rows (106s) ETA: 0.0h
+2026-04-22 15:20:02,020 INFO   Downloading 2026-04 (30 days) ...
+2026-04-22 15:21:46,725 INFO   Saved eurusd_ticks_2026-04.parquet: 1,317,790 rows, 10.0 MB
+2026-04-22 15:21:46,734 INFO [76/76] 2026-04: 1,317,790 rows (105s) ETA: 0.0h
+2026-04-22 15:21:46,734 INFO ============================================================
+2026-04-22 15:21:46,734 INFO DONE. Total: 163,153,258 rows across 76 months in 2.96h

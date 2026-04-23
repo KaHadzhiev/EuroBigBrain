@@ -191,12 +191,97 @@ def _high_vol_short(ctx, config, i, a):
     return None, ctx['c_v'][i] - bo * a
 
 
+# --- NEW (2026-04-23) ---
+
+def _cci_fade_long(ctx, config, i, a):
+    """CCI < -200 (oversold) → enter long bracket above current close."""
+    cci = ctx.get('cci20')
+    if cci is None or not np.isfinite(cci[i]) or cci[i] > -200:
+        return None
+    bo = config.get('bracket_offset', 0.3)
+    return ctx['c_v'][i] + bo * a, None
+
+
+def _cci_fade_short(ctx, config, i, a):
+    """CCI > +200 (overbought) → enter short bracket below current close."""
+    cci = ctx.get('cci20')
+    if cci is None or not np.isfinite(cci[i]) or cci[i] < 200:
+        return None
+    bo = config.get('bracket_offset', 0.3)
+    return None, ctx['c_v'][i] - bo * a
+
+
+def _bb_squeeze_long(ctx, config, i, a):
+    """Bollinger squeeze: BB width < 0.7×BB-width-MA AND price above upper band → long break."""
+    bw = ctx.get('bb_width'); bwm = ctx.get('bb_width_ma'); bbu = ctx.get('bb_upper')
+    if bw is None or bwm is None or bbu is None:
+        return None
+    if not (np.isfinite(bw[i]) and np.isfinite(bwm[i]) and np.isfinite(bbu[i])):
+        return None
+    if bw[i] >= 0.7 * bwm[i]:
+        return None
+    if ctx['c_v'][i] <= bbu[i]:
+        return None
+    bo = config.get('bracket_offset', 0.3)
+    return ctx['c_v'][i] + bo * a, None
+
+
+def _bb_squeeze_short(ctx, config, i, a):
+    bw = ctx.get('bb_width'); bwm = ctx.get('bb_width_ma'); bbl = ctx.get('bb_lower')
+    if bw is None or bwm is None or bbl is None:
+        return None
+    if not (np.isfinite(bw[i]) and np.isfinite(bwm[i]) and np.isfinite(bbl[i])):
+        return None
+    if bw[i] >= 0.7 * bwm[i]:
+        return None
+    if ctx['c_v'][i] >= bbl[i]:
+        return None
+    bo = config.get('bracket_offset', 0.3)
+    return None, ctx['c_v'][i] - bo * a
+
+
+def _inside_inside_long(ctx, config, i, a):
+    """Two consecutive inside bars → bracket entry above bar[t-2].high (long side)."""
+    if i < 3:
+        return None
+    h = ctx['h_v']; l = ctx['lo_v']
+    # bar[i-1] inside bar[i-2]
+    if not (h[i-1] <= h[i-2] and l[i-1] >= l[i-2]):
+        return None
+    # bar[i] inside bar[i-1]
+    if not (h[i] <= h[i-1] and l[i] >= l[i-1]):
+        return None
+    # entry = bar[i-2] high + 1 pip
+    bo = config.get('bracket_offset', 0.0)
+    entry = h[i-2] + bo * a
+    return entry, None
+
+
+def _inside_inside_short(ctx, config, i, a):
+    if i < 3:
+        return None
+    h = ctx['h_v']; l = ctx['lo_v']
+    if not (h[i-1] <= h[i-2] and l[i-1] >= l[i-2]):
+        return None
+    if not (h[i] <= h[i-1] and l[i] >= l[i-1]):
+        return None
+    bo = config.get('bracket_offset', 0.0)
+    entry = l[i-2] - bo * a
+    return None, entry
+
+
 # Aliases — atr_breakout maps to atr_bracket (per EBB Wave-3 naming).
 # Both names are accepted by the dispatch table.
 _atr_breakout = _atr_bracket
 
 
 _STRATEGY_FN = {
+    'cci_fade_long':       _cci_fade_long,
+    'cci_fade_short':      _cci_fade_short,
+    'bb_squeeze_long':     _bb_squeeze_long,
+    'bb_squeeze_short':    _bb_squeeze_short,
+    'inside_inside_long':  _inside_inside_long,
+    'inside_inside_short': _inside_inside_short,
     'atr_bracket':       _atr_bracket,
     'atr_breakout':      _atr_breakout,
     'asian_range':       _asian_range,
